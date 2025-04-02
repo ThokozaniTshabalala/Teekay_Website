@@ -1,0 +1,104 @@
+@keyframes flow {
+    0% {
+      stroke-dashoffset: 1000; /* Start with the path hidden */
+    }
+    50% {
+      stroke-dashoffset: 0; /* Midway through, path is fully drawn */
+    }
+    100% {
+      stroke-dashoffset: 1000; /* End with path hidden */
+    }
+  }
+  
+  .animated-path {
+    animation: flow 2s linear infinite;
+  }
+
+/* First, modify your existing JSX structure slightly to add an ID 
+   This is only to help with CSS targeting, the structure stays the same */
+
+/* Style for the base wire - always visible gray "rail" */
+#path2903 {
+    stroke: #999999;
+    stroke-width: 2;
+    fill: none !important;
+  }
+  
+  /* Create a traveling pulse animation */
+  @keyframes travelingPulse {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Create a color cycling animation */
+  @keyframes pulseColor {
+    0% { stroke: #00ffff; }
+    33% { stroke: #0088ff; }
+    66% { stroke: #1b1b1b; }
+    100% { stroke: #00ff40; }
+  }
+  
+  /* Create the wire-path class that will be applied to a duplicate of your path */
+  .wire-path {
+    stroke: #0ff;
+    stroke-width: 2;
+    stroke-dasharray: 100, 480; /* One 20px dash followed by 380px gap */
+    fill: none !important;
+    animation: 
+      travelingPulse 8s linear infinite,
+      pulseColor 4s linear infinite;
+    filter: drop-shadow(0 0 4px #0ff);
+    pointer-events: none; /* Ensure the pulse doesn't interfere with interactions */
+  }
+  
+  /* To create this effect without modifying your JSX, you'll need to use JavaScript
+     to create a duplicate of your path with the wire-path class */
+  
+  /* Alternative solution with CSS only - use a pseudo-element if your SVG allows it */
+  #circuit-wires path:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    stroke: #0ff;
+    stroke-width: 2;
+    stroke-dasharray: 20, 380;
+    fill: none;
+    animation: 
+      travelingPulse 8s linear infinite,
+      pulseColor 4s linear infinite;
+    filter: drop-shadow(0 0 4px #0ff);
+  }
+
+#circuit-wires-copy{
+    opacity: 20%;
+
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #000000, #1f1e1e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    filter: brightness(1.2) saturate(1.2);
+  }
+
+  .gradient-text.glow {
+    text-shadow: 0 0 8px rgba(197, 197, 197, 0.3);
+  }
+/** .blur-shadow {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #d8d8d8, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 6px 10px rgba(253, 253, 253, 0.5); /* down and blurred 
+  } */
