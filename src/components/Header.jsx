@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Header = () => {
-  const [mode, setMode] = useState("Formal");
-
-  const toggleMode = () => {
-    setMode((prev) => (prev === "Formal" ? "Creative" : "Formal"));
-  };
-
+const Header = ({ mode, toggleMode }) => {
   return (
-    <header className="mt-5 pb-2 w-full flex justify-center bg-white">
+    <header
+      className={`${
+        mode === "Creative" ? "pt-5" : "mt-5"
+      } pb-2 w-full flex justify-center transition-colors duration-300 ${
+        mode === "Creative" ? "bg-[#fbfafa]" : "bg-white"
+      }`}
+    >
       <section className="w-4/5 flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">

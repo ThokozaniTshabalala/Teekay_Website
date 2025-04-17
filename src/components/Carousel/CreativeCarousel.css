@@ -1,0 +1,25 @@
+.creative-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    padding: 20px 0;
+  }
+  
+  .creative-carousel-content {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    animation: scrollText 25s linear infinite;
+  }
+  
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
