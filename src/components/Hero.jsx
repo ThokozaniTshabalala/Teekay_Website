@@ -3,8 +3,8 @@ import React from "react";
 const Hero = ({ mode }) => {
   const heroImage =
     mode === "Creative"
-      ? "/corporate_punk_teekay.png"
-      : "/THOKOZANI_PROFILE_pure_WHITE_BACKGROUND.png";
+      ? "/corporate_punk_teekay.webp"
+      : "/THOKOZANI_PROFILE_pure_WHITE_BACKGROUND.webp";
 
   const backgroundColor = mode === "Creative" ? "#fbfafa" : "transparent";
   const spacingClasses = mode === "Creative" ? "" : "mt-14 pt-12";
@@ -18,7 +18,8 @@ const Hero = ({ mode }) => {
       <img
         src={heroImage}
         alt="Thokozani Tshabalala"
-        className="w-3/4 h-auto object-cover"
+        className="w-3/4 h-auto object-cover transition-opacity duration-700 opacity-0"
+        onLoad={(e) => (e.target.style.opacity = 1)}
       />
 
       {/* Text Overlay - only in Formal mode */}
